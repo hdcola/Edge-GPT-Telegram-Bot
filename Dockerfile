@@ -1,10 +1,8 @@
-# syntax = docker/dockerfile:1.2
-FROM python:3.10
+FROM python:3.8.10-alpine
 
-RUN apt-get update && apt upgrade -y
-RUN cd /
-COPY . /edgebot/
-RUN cd edgebot
-WORKDIR /edgebot
+COPY . /edgegpt
+WORKDIR /edgegpt
+RUN apk add build-base
+RUN pip install wheel
 RUN pip install -r requirements.txt
-CMD [ "python", "edge.py" ,"-c","/conf"]
+CMD ["python", "src/edge.py"]
