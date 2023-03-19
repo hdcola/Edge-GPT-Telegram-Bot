@@ -6,7 +6,7 @@
 # This work is licensed under the terms of the MIT license.
 
 import logging
-
+import hdext
 import database as db
 import utils as ut
 from EdgeGPT import ConversationStyle
@@ -24,6 +24,7 @@ async def unlock(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     ):
         db.add_user(cid)
         await ut.send(update, "Bot unlocked. Start a conversation with /new")
+        hdext.set_command(update.get_bot())
 
 
 async def new(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:

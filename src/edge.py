@@ -9,6 +9,7 @@ import argparse
 import logging
 
 import cmds
+import hdext
 
 import database as db
 import utils as ut
@@ -67,6 +68,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def setup_handlers(app: ApplicationBuilder) -> None:
+    app.add_handler(CommandHandler("upcmd", hdext.updatecmd))
+
     unlock_handler = CommandHandler("unlock", cmds.unlock)
     app.add_handler(unlock_handler)
 
