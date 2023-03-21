@@ -3,10 +3,13 @@ Telegram bot using [EdgeGPT](https://github.com/acheong08/EdgeGPT)
 unofficial API
 
 **Content**:
+- [Description](#description)
 - [Requirements](#requirements)
 - [BotFather set up](#botfather-set-up)
 - [Run](#run)
 - [Docker](#docker)
+  - [Manual build](#manual-build)
+  - [Dockerhub image](#dockerhub-image)
 - [Contributing](#contributing)
   - [VSCode project settings](#vscode-project-settings)
   - [Contributors](#contributors)
@@ -76,6 +79,8 @@ according to your configuration.
   >     ```
   >
   >   - **cert**: Path to your server certificate (can be self-signed)
+  >
+  >   - **admin**: List of admin IDs allowed manager bot. You could put a json file update `cookies.json`.
   >
   >   - **assemblyai_token**: Your AssemblyAI token, required to use ASR.
   >   More info: [Supported Languages](https://www.assemblyai.com/docs#supported-languages)
