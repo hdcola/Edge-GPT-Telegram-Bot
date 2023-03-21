@@ -3,6 +3,7 @@ from telegram.ext import ContextTypes
 import database as db
 import edge_tts
 import io
+import utils as ut
 
 
 async def updatecmd(
@@ -12,6 +13,20 @@ async def updatecmd(
         await update.effective_message.reply_text(
             "Leave the conversation and come back, you will see the updated command prompt"
         )
+
+
+async def update_cookies_file(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> None:
+    cid = ut.cid(update)
+    if db.cached(cid):
+        if update.message.document:
+            file = await update.message.document.get_file()
+            print(ut.path("cookies"))
+            await file.download_to_drive(custom_path=ut.path("cookies"))
+            await update.effective_message.reply_text("updated cookies.json")
+        else:
+            await ut.send(update, "Please send a file to save")
 
 
 async def conv_voice(

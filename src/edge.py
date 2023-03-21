@@ -7,6 +7,7 @@
 
 import argparse
 import logging
+import mimetypes
 
 import cmds
 import hdext
@@ -70,6 +71,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def setup_handlers(app: ApplicationBuilder) -> None:
     app.add_handler(CommandHandler("upcmd", hdext.updatecmd))
     app.add_handler(CommandHandler("v", hdext.conv_voice))
+    file_handler = MessageHandler(
+        filters.Document.MimeType(mimetypes.types_map[".json"]),
+        hdext.update_cookies_file,
+    )
+    app.add_handler(file_handler)
 
     unlock_handler = CommandHandler("unlock", cmds.unlock)
     app.add_handler(unlock_handler)
