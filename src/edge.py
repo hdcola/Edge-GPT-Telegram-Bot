@@ -70,6 +70,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def setup_handlers(app: ApplicationBuilder) -> None:
     app.add_handler(CommandHandler("upcmd", hdext.updatecmd))
+    app.add_handler(CommandHandler("i", hdext.show_chatid))
     app.add_handler(CommandHandler("v", hdext.conv_voice))
     file_handler = MessageHandler(
         filters.Document.MimeType(mimetypes.types_map[".json"]),

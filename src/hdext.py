@@ -15,6 +15,13 @@ async def updatecmd(
         )
 
 
+async def show_chatid(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> None:
+    cid = ut.cid(update)
+    await update.effective_message.reply_text(f"chat id: {cid}")
+
+
 async def update_cookies_file(
     update: Update, context: ContextTypes.DEFAULT_TYPE
 ) -> None:
